@@ -24,11 +24,10 @@ class Mancala:
         player_board[pit_idx] = 0  # set the chosen pit_idx to 0
         active_player_idx = player_idx # keeps track of the player that is currently active
         while num_stones > 0:  # loop for placement of stones from initial pit_idx
-            if pit_idx == 0:  # condition for when player side runs out of indices, move to other side
+            if pit_idx == 0 or (pit_idx == 1 and player_idx != active_player_idx):  # condition for when player side
+                # runs out of indices, move to other side
                 player_idx = (player_idx + 1) % 2  # switch to the board of the other player
                 pit_idx = 6  # begin at pit6 of opposing player's board
-                if pit_idx == 0: # pit idx is 0 on the opposite side, skip opponent's store ??????
-                   player_idx = active_player_idx
             else:
                 pit_idx -= 1  # decrement pit_idx number to place one stone from num_stones
             num_stones -= 1  # decrement stones as loop progresses
